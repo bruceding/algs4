@@ -13,6 +13,12 @@ public class LinkNode<Item> {
     private static class Node<Item> {
         private Item item;
         private Node<Item> next;
+
+        public Node(Item item) {
+            this.item = item;
+        }
+        public Node() {
+        }
     }
 
     public LinkNode() {
@@ -27,6 +33,13 @@ public class LinkNode<Item> {
         head.next = oldHead;
         n++;
 
+    }
+    public void addNode(Node<Item> item) {
+        Node<Item> oldHead = head;
+
+        head = item;
+        head.next = oldHead;
+        n++;
     }
 
     public boolean isEmpty() {
@@ -96,17 +109,29 @@ public class LinkNode<Item> {
         n--;
 
     }
+
+    public Node<Item> reverse(Node<Item> first) {
+        if (first == null) return null;
+        if (first.next == null) return first;
+
+        Node<Item> second = first.next;
+        Node<Item> rest = reverse(second);
+        second.next = first;
+        first.next = null;
+        return rest;
+    }
     public static void main(String[] args) {
         LinkNode<Integer> linkNode = new LinkNode<>();
-        linkNode.addNode(3);
-        linkNode.addNode(1);
-        linkNode.addNode(2);
+        Node<Integer> first = new Node<>(1);
+        Node<Integer> tail = new Node<>(3);
+
+        linkNode.addNode(tail);
+        linkNode.addNode(new Node<Integer>(2));
+        linkNode.addNode(first);
 
         System.out.println(linkNode);
-
-        linkNode.delTailNode();
-        System.out.println(linkNode);
-        linkNode.delNode(1);
+        Node<Integer> newFirst = linkNode.reverse(first);
+        System.out.println(newFirst.item);
         System.out.println(linkNode);
 
     }

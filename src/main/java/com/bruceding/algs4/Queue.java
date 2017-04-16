@@ -109,6 +109,7 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     /**
+     *
      * Removes and returns the item on this queue that was least recently added.
      *
      * @return the item on this queue that was least recently added
