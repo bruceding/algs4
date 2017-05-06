@@ -1,5 +1,6 @@
-package com.bruceding.algs4;
+package com.bruceding.algs4.ch1_3;
 
+import com.bruceding.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -27,6 +28,24 @@ public class Josephus {
             StdOut.print(queue.dequeue() + " ");
         }
 
+        System.out.println("\n");
+        System.out.println(last(7, 2));
+
+    }
+
+    /**
+     * 约瑟夫算法计算最好剩下的人
+     * @param n
+     * @param m
+     * @return
+     */
+    public static int last (int n , int m) {
+        int s = 0;
+        for (int i = 2; i <=n ; i++) {
+            s = (s + m) % i;
+        }
+
+        return s;
     }
 
 }
